@@ -9,20 +9,14 @@ export default class Team {
 
   [Symbol.iterator]() {
     const arrayCharacters = Array.from(this.members);
-    let index = 0;
+    let index = -1; 
     return {
       next() {
-        const result = {
-          value: undefined,
-          done: true,
+        index += 1; // вызов; индекс увеличивается до 0 и вывод первого чара
+        return {
+          value: arrayCharacters[index],
+          done: index >= arrayCharacters.length, // пока это утверждение верно
         };
-
-        if (index < arrayCharacters.length) {
-          result.value = arrayCharacters[index];
-          result.done = false;
-          index += 1;
-        }
-        return result;
       },
     };
   }
