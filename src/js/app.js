@@ -12,16 +12,17 @@ export default class Team {
     let index = 0;
     return {
       next() {
-        if (index < arrayCharacters.length) {
-          return {
-            value: arrayCharacters[index++],
-            done: false,
-          };
-        }
-        return {
+        const result = {
           value: undefined,
           done: true,
         };
+
+        if (index < arrayCharacters.length) {
+          result.value = arrayCharacters[index];
+          result.done = false;
+          index += 1;
+        }
+        return result;
       },
     };
   }
